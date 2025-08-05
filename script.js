@@ -1,3 +1,17 @@
+const input = document.querySelector('#input');
+const buttons = document.querySelectorAll('.btn');
+const clear = document.querySelector('#equal-btn');
+
+clear.addEventListener('click', () => {
+    
+})
+
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        input.value += button.textContent;
+    });
+})
+
 function add(a, b){
     return a + b;
 };
@@ -14,10 +28,12 @@ function divide(a, b){
     return a / b;
 };
 
-console.log(add(5,5));
-console.log(subracts(5,5));
-console.log(multiply(5,5));
-console.log(divide(5,5));
+function operate(num1, operator, num2){
+    add()
+    subracts()
+    multiply()
+    divide()
+}
 
 
 
