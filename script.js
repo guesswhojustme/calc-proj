@@ -3,7 +3,7 @@ const buttons = document.querySelectorAll('.btn');
 const clearBtn = document.querySelector('#clear-btn');
 const divideBtn = document.querySelector('#divide-btn')
 const multiplyBtn = document.querySelector('#multiply-btn')
-const subractBtn = document.querySelector('#subtract-btn')
+const subtractBtn = document.querySelector('#subtract-btn')
 const addBtn = document.querySelector('#add-btn')
 const equalBtn = document.querySelector('#equal-btn')
 let change = document.querySelector('.change')
@@ -21,33 +21,45 @@ divideBtn.addEventListener('click', () => {
    change.textContent = '/' 
    operator = '/'
    firstVal = inputVal; 
+   input.value = '';
+   console.log(`first value: ${firstVal}` );
+   console.log("divide clicked");
 });
 
-subractBtn.addEventListener('click', () => {
+subtractBtn.addEventListener('click', () => {
     change.textContent = '-'
     operator = '-';
     firstVal = inputVal;
+    input.value = '';
+    console.log(`first value: ${firstVal}` );
+    console.log("subtract clicked");
 });
 
 addBtn.addEventListener('click', () => {
     change.textContent = '+'
     operator = '+';
     firstVal = inputVal;
-    // input.value = 0;
-    console.log(firstVal);
-    
+    input.value = '';
+    console.log(`first value: ${firstVal}` );
+    console.log(`second value: ${secondVal}` );
+    console.log("add clicked");
+   
 });
 
 multiplyBtn.addEventListener('click', () => {
     change.textContent = '*'
     operator = '*';
     firstVal = inputVal;
+    input.value = '';
+    console.log(`first value: ${firstVal}` );
+    console.log(`second value: ${secondVal}` );
+    console.log("multiply clicked");
 });
 
 equalBtn.addEventListener('click', () => {
     secondVal = inputVal;
-    console.log(secondVal);
-    console.log(operate(operator));
+    console.log(`second value: ${secondVal}`);
+    console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
 });
 
 buttons.forEach(button => {
@@ -69,7 +81,8 @@ let secondVal = 0;
 let firstVal = 0;
 
 function add(a, b){
-    return input.value =  a + b;
+    inputVal = a + b
+    return input.value = inputVal
 };
 
 function subracts(a, b){
@@ -77,7 +90,8 @@ function subracts(a, b){
 };
 
 function multiply(a, b){
-    return input.value =  a * b;
+    inputVal = a * b
+    return input.value =  inputVal;
 };
 
 function divide(a, b){
