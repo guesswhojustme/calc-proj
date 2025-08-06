@@ -22,7 +22,9 @@ divideBtn.addEventListener('click', () => {
    operator = '/'
    firstVal = inputVal; 
    input.value = '';
+   console.log(`current input value: ${inputVal}`);
    console.log(`first value: ${firstVal}` );
+   console.log(`second value: ${secondVal}` );
    console.log("divide clicked");
 });
 
@@ -31,7 +33,9 @@ subtractBtn.addEventListener('click', () => {
     operator = '-';
     firstVal = inputVal;
     input.value = '';
+    console.log(`current input value: ${inputVal}`);
     console.log(`first value: ${firstVal}` );
+    console.log(`second value: ${secondVal}` );
     console.log("subtract clicked");
 });
 
@@ -40,6 +44,7 @@ addBtn.addEventListener('click', () => {
     operator = '+';
     firstVal = inputVal;
     input.value = '';
+    console.log(`current input value: ${inputVal}`);
     console.log(`first value: ${firstVal}` );
     console.log(`second value: ${secondVal}` );
     console.log("add clicked");
@@ -51,6 +56,7 @@ multiplyBtn.addEventListener('click', () => {
     operator = '*';
     firstVal = inputVal;
     input.value = '';
+    console.log(`current input value: ${inputVal}`);
     console.log(`first value: ${firstVal}` );
     console.log(`second value: ${secondVal}` );
     console.log("multiply clicked");
@@ -58,24 +64,36 @@ multiplyBtn.addEventListener('click', () => {
 
 equalBtn.addEventListener('click', () => {
     secondVal = inputVal;
+    console.log("equal clicked");
+    console.log(`first value: ${firstVal}`);
     console.log(`second value: ${secondVal}`);
     console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
+    console.log(`current input value: ${inputVal}`);
+    displayVal = true;
+    console.log(`display active: ${displayVal}`);
 });
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
+    console.log(`display active: ${displayVal}`);
     if(input.value == 0){
         inputVal = '';
     }
+    if(displayVal == true){
+        input.value = '';
+        inputVal = '';
+        displayVal = false;
+    }
     inputVal += button.textContent;
     input.value += button.textContent;
-    console.log(inputVal);
+    console.log(`current input value: ${inputVal}`);
     });
 })
 
 let inputVal = '';
 let operator = '';
 
+let displayVal = false;
 let secondVal = '';
 let firstVal = '';
 
