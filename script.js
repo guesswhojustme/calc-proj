@@ -10,11 +10,11 @@ let change = document.querySelector('.change')
 
 clearBtn.addEventListener('click', () => {
     console.log("clear clicked");
-    firstVal = 0;
-    secondVal = 0;
+    firstVal = '';
+    secondVal = '';
     operator = '';
-    input.value = 0;
-    
+    input.value = '';
+    change.textContent = '';
 });
 
 divideBtn.addEventListener('click', () => {
@@ -65,20 +65,19 @@ equalBtn.addEventListener('click', () => {
 buttons.forEach(button => {
     button.addEventListener('click', () => {
     if(input.value == 0){
-        input.value = '';
         inputVal = '';
     }
     inputVal += button.textContent;
-    input.value += button.textContent
+    input.value += button.textContent;
+    console.log(inputVal);
     });
 })
 
-let inputVal = 0;
-input.value = inputVal;
+let inputVal = '';
 let operator = '';
 
-let secondVal = 0;
-let firstVal = 0;
+let secondVal = '';
+let firstVal = '';
 
 function add(a, b){
     inputVal = a + b
@@ -86,7 +85,8 @@ function add(a, b){
 };
 
 function subracts(a, b){
-    return input.value =  a - b;
+    inputVal = a - b
+    return input.value =  inputVal;
 };
 
 function multiply(a, b){
