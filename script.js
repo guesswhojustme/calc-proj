@@ -95,7 +95,8 @@ function multiply(a, b){
 };
 
 function divide(a, b){
-    return input.value =  a / b;
+    inputVal = a / b
+    return input.value = inputVal;
 };
 
 function operate(operator){
@@ -113,6 +114,5 @@ function operate(operator){
         return subracts(parseInt(firstVal), parseInt(secondVal))
         break;
    }
-
 }
 
