@@ -73,6 +73,12 @@ subtractBtn.addEventListener('click', () => {
 addBtn.addEventListener('click', () => {
     if(firstVal !== '' && secondVal !== ''){
         console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
+        console.log("add clicked");
+        console.log(`current input value: ${inputVal}`);
+        console.log(`first value: ${firstVal}` );
+        console.log(`second value: ${secondVal}` );
+        console.log(`first input active: ${firstInput}`);
+        console.log(`second input active: ${secondInput}`);
         secondVal = '';
     }
     change.textContent = '+'
