@@ -199,6 +199,9 @@ function multiply(a, b){
 
 function divide(a, b){
     firstVal = a / b
+    if(a == 0){
+        return input.value = 'Cannot divide by zero';
+    }
     return input.value = firstVal;
 };
 
@@ -211,7 +214,7 @@ function operate(operator){
         return multiply(parseInt(firstVal), parseInt(secondVal))
         break;
     case '/':
-        return divide(parseInt(firstVal), parseInt(secondVal))
+        return divide(parseFloat(firstVal), parseFloat(secondVal))
         break;
     case '-':
         return subracts(parseInt(firstVal), parseInt(secondVal))
