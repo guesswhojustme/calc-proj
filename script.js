@@ -12,8 +12,6 @@ clearBtn.addEventListener('click', () => {
     console.log("clear clicked");
     firstVal = '';
     secondVal = '';
-    firstInputVal = '';
-    secondInputVal = '';
     operator = '';
     change.textContent = '';
     firstInput = true;
@@ -175,18 +173,17 @@ buttons.forEach(button => {
 })
 
 let secondInput = false
-let secondInputVal = '';
-
 let firstInput = true;
-let firstInputVal = ''
+
+let secondVal = '';
+let firstVal = '';
 
 let displayVal = false;
 
 let inputVal = '';
 let operator = '';
 
-let secondVal = '';
-let firstVal = '';
+
 
 function add(a, b){
     firstVal = a + b
