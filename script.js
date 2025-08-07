@@ -20,6 +20,7 @@ clearBtn.addEventListener('click', () => {
     secondInput = false;
     displayVal = false;
     equalActive = false; 
+    operation = false;
     input.value = '';
     logMessages()
 });
@@ -34,7 +35,7 @@ divideBtn.addEventListener('click', () => {
    secondInput = true;
    firstInput = false;
    prevVal = secondVal
-   input.value = '';
+   operation = true;
    console.log("divide clicked");
    logMessages()
 });
@@ -49,7 +50,7 @@ subtractBtn.addEventListener('click', () => {
     secondInput = true;
     firstInput = false;
     prevVal = secondVal
-    input.value = '';
+    operation = true;
     console.log("subtract clicked");
     logMessages()
 });
@@ -64,7 +65,7 @@ addBtn.addEventListener('click', () => {
     secondInput = true;
     firstInput = false;
     prevVal = secondVal
-    input.value = ''
+    operation = true;
     console.log("add clicked");
     logMessages()
 });
@@ -79,7 +80,7 @@ multiplyBtn.addEventListener('click', () => {
     secondInput = true;
     firstInput = false;
     prevVal = secondVal
-    input.value = ''
+    operation = true;
     console.log("multiply clicked");
     logMessages()
 });
@@ -111,6 +112,11 @@ buttons.forEach(button => {
         secondVal = '';
         displayVal = false;
     }
+    if(operation == true){
+        input.value = '';
+        operation = false;
+    }
+
     if(firstInput == true){
         firstVal += button.textContent;
     }
@@ -138,9 +144,11 @@ let operator = '';
 function chainOperations(){
     if(operator !== ''){
         if(equalActive == false){
+        operate(operator)
         console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
         firstVal = totalVal;
         secondVal = '';
+        return input.value = firstVal;
         }
     }
 }
@@ -182,18 +190,18 @@ function operate(operator){
     case '+':
         if(prevVal == ''){
             prevVal = secondVal;
-            return add(parseInt(firstVal), parseInt(secondVal))
+            return add(parseFloat(firstVal), parseFloat(secondVal))
         }else {
-            return add(parseInt(firstVal), parseInt(prevVal))
+            return add(parseFloat(firstVal), parseFloat(prevVal))
         }
         
         break;
     case '*':
         if(prevVal == ''){
             prevVal = secondVal;
-            return multiply(parseInt(firstVal), parseInt(secondVal))
+            return multiply(parseFloat(firstVal), parseFloat(secondVal))
         }else {
-            return multiply(parseInt(firstVal), parseInt(prevVal))
+            return multiply(parseFloat(firstVal), parseFloat(prevVal))
         }
         break;
     case '/':
@@ -207,9 +215,9 @@ function operate(operator){
     case '-':
         if(prevVal == ''){
             prevVal = secondVal;
-            return subracts(parseInt(firstVal), parseInt(secondVal))
+            return subracts(parseFloat(firstVal), parseFloat(secondVal))
         }else {
-            return subracts(parseInt(firstVal), parseInt(prevVal))
+            return subracts(parseFloat(firstVal), parseFloat(prevVal))
         }
         break;
    }
