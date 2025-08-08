@@ -25,6 +25,7 @@ clearBtn.addEventListener('click', () => {
 });
 
 divideBtn.addEventListener('click', () => {
+   checkSecondVal();
    chainOperations();
    secondVal = '';
    change.textContent = '/' 
@@ -35,10 +36,11 @@ divideBtn.addEventListener('click', () => {
    prevVal = secondVal
    operation = true;
    console.log("divide clicked");
-   logMessages()
+   logMessages();
 });
 
 subtractBtn.addEventListener('click', () => {
+    checkSecondVal();
     chainOperations();
     secondVal = '';
     change.textContent = '-'
@@ -49,10 +51,11 @@ subtractBtn.addEventListener('click', () => {
     prevVal = secondVal
     operation = true;
     console.log("subtract clicked");
-    logMessages()
+    logMessages();
 });
 
 addBtn.addEventListener('click', () => {
+    checkSecondVal();
     chainOperations();
     secondVal = '';
     change.textContent = '+'
@@ -63,10 +66,11 @@ addBtn.addEventListener('click', () => {
     prevVal = secondVal
     operation = true;
     console.log("add clicked");
-    logMessages()
+    logMessages();
 });
 
 multiplyBtn.addEventListener('click', () => {
+    checkSecondVal();
     chainOperations();
     secondVal = '';
     change.textContent = '*'
@@ -77,7 +81,7 @@ multiplyBtn.addEventListener('click', () => {
     prevVal = secondVal
     operation = true;
     console.log("multiply clicked");
-    logMessages()
+    logMessages();
 });
 
 equalBtn.addEventListener('click', () => {
@@ -94,7 +98,6 @@ equalBtn.addEventListener('click', () => {
     console.log('equal clicked');
     console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
     firstVal = totalVal;
-    console.log(`previous val: ${prevVal}`); 
     logMessages()
 });
 
@@ -117,6 +120,7 @@ buttons.forEach(button => {
         secondVal += button.textContent;
     }
     input.value += button.textContent;
+    
     logMessages()
     });
 })
@@ -144,12 +148,19 @@ function chainOperations(){
     }
 }
 
+function checkSecondVal() {
+    if (secondVal == '') {
+        operator = '';
+    }
+}
+
 function logMessages(){
     console.log(`display active: ${displayVal}`);
     console.log(`first value: ${firstVal}` );
     console.log(`second value: ${secondVal}` );
     console.log(`first input active: ${firstInput}`);
     console.log(`second input active: ${secondInput}`);
+    console.log(`chaining operation active: ${operation}`);
     console.log('_____________________________________________');
 }
 
@@ -179,37 +190,16 @@ function divide(a, b){
 function operate(operator){
    switch(operator){
     case '+':
-        if(prevVal == ''){
-            prevVal = secondVal;
-            return add(parseFloat(firstVal), parseFloat(secondVal))
-        }else {
-            return add(parseFloat(firstVal), parseFloat(prevVal))
-        }
-        
+        return add(parseFloat(firstVal), parseFloat(secondVal))
         break;
     case '*':
-        if(prevVal == ''){
-            prevVal = secondVal;
-            return multiply(parseFloat(firstVal), parseFloat(secondVal))
-        }else {
-            return multiply(parseFloat(firstVal), parseFloat(prevVal))
-        }
+        return multiply(parseFloat(firstVal), parseFloat(secondVal))
         break;
     case '/':
-        if(prevVal == ''){
-            prevVal = secondVal;
-            return divide(parseFloat(firstVal), parseFloat(secondVal))
-        }else {
-            return divide(parseFloat(firstVal), parseFloat(prevVal))
-        }
+        return divide(parseFloat(firstVal), parseFloat(secondVal))
         break;
     case '-':
-        if(prevVal == ''){
-            prevVal = secondVal;
-            return subracts(parseFloat(firstVal), parseFloat(secondVal))
-        }else {
-            return subracts(parseFloat(firstVal), parseFloat(prevVal))
-        }
+        return subracts(parseFloat(firstVal), parseFloat(secondVal))
         break;
    }
 }
