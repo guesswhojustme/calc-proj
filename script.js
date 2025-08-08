@@ -19,7 +19,6 @@ clearBtn.addEventListener('click', () => {
     firstInput = true;
     secondInput = false;
     displayVal = false;
-    equalActive = false; 
     operation = false;
     input.value = '';
     logMessages()
@@ -27,7 +26,6 @@ clearBtn.addEventListener('click', () => {
 
 divideBtn.addEventListener('click', () => {
    chainOperations();
-   equalActive = false;
    secondVal = '';
    change.textContent = '/' 
    operator = '/'
@@ -42,7 +40,6 @@ divideBtn.addEventListener('click', () => {
 
 subtractBtn.addEventListener('click', () => {
     chainOperations();
-    equalActive = false;
     secondVal = '';
     change.textContent = '-'
     operator = '-';
@@ -57,7 +54,6 @@ subtractBtn.addEventListener('click', () => {
 
 addBtn.addEventListener('click', () => {
     chainOperations();
-    equalActive = false;
     secondVal = '';
     change.textContent = '+'
     operator = '+';
@@ -72,7 +68,6 @@ addBtn.addEventListener('click', () => {
 
 multiplyBtn.addEventListener('click', () => {
     chainOperations();
-    equalActive = false;
     secondVal = '';
     change.textContent = '*'
     operator = '*';
@@ -86,9 +81,8 @@ multiplyBtn.addEventListener('click', () => {
 });
 
 equalBtn.addEventListener('click', () => {
-    equalActive = true;
-    if(firstVal !== '' && secondVal == ''){
-        secondInput = false;
+    if(secondVal == ''){
+        secondVal = firstVal;
     }else if (operator == ''){
         return displayVal = true;
     }else{
@@ -116,7 +110,6 @@ buttons.forEach(button => {
         input.value = '';
         operation = false;
     }
-
     if(firstInput == true){
         firstVal += button.textContent;
     }
@@ -133,8 +126,6 @@ let firstInput = true;
 let displayVal = false;
 let operation = false;
 
-let equalActive = false; 
-
 let totalVal = '';
 let prevVal = ''
 let secondVal = '';
@@ -143,7 +134,7 @@ let operator = '';
 
 function chainOperations(){
     if(operator !== ''){
-        if(equalActive == false){
+        if(displayVal == false){
         operate(operator)
         console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
         firstVal = totalVal;
