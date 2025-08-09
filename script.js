@@ -8,8 +8,8 @@ const addBtn = document.querySelector('#add-btn')
 const equalBtn = document.querySelector('#equal-btn')
 let change = document.querySelector('.change')
 
-let firstInput = true;
-let secondInput = false
+let firstInputActive = true;
+let secondInputActive = false
 let outputIsDisplaying = false;
 let isOperating = false;
 
@@ -25,8 +25,8 @@ clearBtn.addEventListener('click', () => {
     totalVal = '';
     operator = '';
     change.textContent = '';
-    firstInput = true;
-    secondInput = false;
+    firstInputActive = true;
+    secondInputActive = false;
     outputIsDisplaying = false;
     isOperating = false;
     input.value = '';
@@ -40,8 +40,8 @@ divideBtn.addEventListener('click', () => {
    change.textContent = '/' 
    operator = '/'
    outputIsDisplaying = false;
-   secondInput = true;
-   firstInput = false;
+   secondInputActive = true;
+   firstInputActive = false;
    isOperating = true;
    console.log("divide clicked");
    logMessages();
@@ -54,8 +54,8 @@ subtractBtn.addEventListener('click', () => {
     change.textContent = '-'
     operator = '-';
     outputIsDisplaying = false;
-    secondInput = true;
-    firstInput = false;
+    secondInputActive = true;
+    firstInputActive = false;
     isOperating = true;
     console.log("subtract clicked");
     logMessages();
@@ -68,8 +68,8 @@ addBtn.addEventListener('click', () => {
     change.textContent = '+'
     operator = '+';
     outputIsDisplaying = false;
-    secondInput = true;
-    firstInput = false;
+    secondInputActive = true;
+    firstInputActive = false;
     isOperating = true;
     console.log("add clicked");
     logMessages();
@@ -82,7 +82,7 @@ multiplyBtn.addEventListener('click', () => {
     change.textContent = '*'
     operator = '*';
     outputIsDisplaying = false;
-    secondInput = true;
+    secondInputActive = true;
     firstInput = false;
     isOperating = true;
     console.log("multiply clicked");
@@ -99,8 +99,8 @@ equalBtn.addEventListener('click', () => {
         outputIsDisplaying  = true;
     }
     change.textContent = '='
-    firstInput = true;
-    secondInput = false;
+    firstInputActive = true;
+    secondInputActive = false;
     console.log('equal clicked');
     console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
     firstVal = totalVal;
@@ -119,9 +119,9 @@ buttons.forEach(button => {
         isOperating= false;
     }
 
-    if(firstInput){
+    if(firstInputActive){
         firstVal += button.textContent;
-    }else if(secondInput) {
+    }else if(secondInputActive) {
         secondVal += button.textContent;
     }
     input.value += button.textContent;
@@ -152,8 +152,8 @@ function logMessages(){
     console.log(`operating? : ${isOperating}, operator: ${operator}`);
     console.log(`first value: ${firstVal}` );
     console.log(`second value: ${secondVal}` );
-    console.log(`first input active: ${firstInput}`);
-    console.log(`second input active: ${secondInput}`);
+    console.log(`first input active: ${firstInputActive}`);
+    console.log(`second input active: ${secondInputActive}`);
     console.log('_____________________________________________');
 }
 
