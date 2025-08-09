@@ -8,18 +8,27 @@ const addBtn = document.querySelector('#add-btn')
 const equalBtn = document.querySelector('#equal-btn')
 let change = document.querySelector('.change')
 
+let firstInput = true;
+let secondInput = false
+let outputIsDisplaying = false;
+let isOperating = false;
+
+let secondVal = '';
+let firstVal = '';
+let totalVal = '';
+let operator = '';
+
 clearBtn.addEventListener('click', () => {
     console.log("clear clicked");
     firstVal = '';
     secondVal = '';
-    prevVal = '';
     totalVal = '';
     operator = '';
     change.textContent = '';
     firstInput = true;
     secondInput = false;
-    displayVal = false;
-    operation = false;
+    outputIsDisplaying = false;
+    isOperating = false;
     input.value = '';
     logMessages()
 });
@@ -30,11 +39,10 @@ divideBtn.addEventListener('click', () => {
    secondVal = '';
    change.textContent = '/' 
    operator = '/'
-   displayVal = false;
+   outputIsDisplaying = false;
    secondInput = true;
    firstInput = false;
-   prevVal = secondVal
-   operation = true;
+   isOperating = true;
    console.log("divide clicked");
    logMessages();
 });
@@ -45,11 +53,10 @@ subtractBtn.addEventListener('click', () => {
     secondVal = '';
     change.textContent = '-'
     operator = '-';
-    displayVal = false;
+    outputIsDisplaying = false;
     secondInput = true;
     firstInput = false;
-    prevVal = secondVal
-    operation = true;
+    isOperating = true;
     console.log("subtract clicked");
     logMessages();
 });
@@ -60,11 +67,10 @@ addBtn.addEventListener('click', () => {
     secondVal = '';
     change.textContent = '+'
     operator = '+';
-    displayVal = false;
+    outputIsDisplaying = false;
     secondInput = true;
     firstInput = false;
-    prevVal = secondVal
-    operation = true;
+    isOperating = true;
     console.log("add clicked");
     logMessages();
 });
@@ -75,22 +81,22 @@ multiplyBtn.addEventListener('click', () => {
     secondVal = '';
     change.textContent = '*'
     operator = '*';
-    displayVal = false;
+    outputIsDisplaying = false;
     secondInput = true;
     firstInput = false;
-    prevVal = secondVal
-    operation = true;
+    isOperating = true;
     console.log("multiply clicked");
     logMessages();
 });
 
 equalBtn.addEventListener('click', () => {
-    if(secondVal == ''){
+    if(!operator){
+        return 
+    }else if(secondVal === ''){
         secondVal = firstVal;
-    }else if (operator == ''){
-        return displayVal = true;
-    }else{
-        displayVal = true;
+    }
+    else{
+        outputIsDisplaying  = true;
     }
     change.textContent = '='
     firstInput = true;
@@ -103,20 +109,19 @@ equalBtn.addEventListener('click', () => {
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
-    if(displayVal == true){
+    if(outputIsDisplaying){
         input.value = '';
         firstVal = '';
         secondVal = '';
-        displayVal = false;
-    }
-    if(operation == true){
+        outputIsDisplaying = false;
+    }else if(isOperating){
         input.value = '';
-        operation = false;
+        isOperating= false;
     }
-    if(firstInput == true){
+
+    if(firstInput){
         firstVal += button.textContent;
-    }
-    if(secondInput == true) {
+    }else if(secondInput) {
         secondVal += button.textContent;
     }
     input.value += button.textContent;
@@ -125,42 +130,30 @@ buttons.forEach(button => {
     });
 })
 
-let secondInput = false
-let firstInput = true;
-let displayVal = false;
-let operation = false;
-
-let totalVal = '';
-let prevVal = ''
-let secondVal = '';
-let firstVal = '';
-let operator = '';
-
 function chainOperations(){
-    if(operator !== ''){
-        if(displayVal == false){
-        operate(operator)
-        console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
-        firstVal = totalVal;
-        secondVal = '';
-        return input.value = firstVal;
-        }
+    if(operator && outputIsDisplaying == false){ 
+    operate(operator)
+    console.log(`${firstVal} ${operator} ${secondVal} = ${operate(operator)}`);
+    firstVal = totalVal;
+    secondVal = '';
+    return input.value = firstVal;
     }
 }
 
 function checkSecondVal() {
-    if (secondVal == '') {
+    if(secondVal === '') {
         operator = '';
     }
 }
 
+
 function logMessages(){
-    console.log(`display active: ${displayVal}`);
+    console.log(`displaying value? : ${outputIsDisplaying }`);
+    console.log(`operating? : ${isOperating}, operator: ${operator}`);
     console.log(`first value: ${firstVal}` );
     console.log(`second value: ${secondVal}` );
     console.log(`first input active: ${firstInput}`);
     console.log(`second input active: ${secondInput}`);
-    console.log(`chaining operation active: ${operation}`);
     console.log('_____________________________________________');
 }
 
