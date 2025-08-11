@@ -83,7 +83,7 @@ multiplyBtn.addEventListener('click', () => {
     operator = '*';
     outputIsDisplaying = false;
     secondInputActive = true;
-    firstInput = false;
+    firstInputActive = false;
     isOperating = true;
     console.log("multiply clicked");
     logMessages();
