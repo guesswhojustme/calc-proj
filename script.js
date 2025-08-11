@@ -1,11 +1,5 @@
 const input = document.querySelector('#input');
 const buttons = document.querySelectorAll('.btn');
-const clearBtn = document.querySelector('#clear-btn');
-const divideBtn = document.querySelector('#divide-btn')
-const multiplyBtn = document.querySelector('#multiply-btn')
-const subtractBtn = document.querySelector('#subtract-btn')
-const addBtn = document.querySelector('#add-btn')
-const equalBtn = document.querySelector('#equal-btn')
 const parentBtnsDiv = document.querySelector('.btn-div')
 let change = document.querySelector('.change')
 
